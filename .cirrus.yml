@@ -10,7 +10,7 @@ compute_engine_instance:
 task:
   name: OCI
   environment:
-    TENANCY: ENCRYPTED[foo]
+    TENANCY: ENCRYPTED[7d2b99264390b5b442adc085ffb7197b706fc0d35442439f0da0d074a88cddb21d7dd7fe5e701dabf6c738faf56f5dad]
   install_script:
   - pkg install -y py38-oci
   script:
