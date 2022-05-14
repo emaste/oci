@@ -1,9 +1,11 @@
 #!/bin/sh
+set -e
+umask 077
 
 mkdir -p ~/.oci
 OCI_DIR=$(cd ~/.oci && pwd -P)
 
-echo ${KEY_PEM} > ${OCI_DIR}/key.pem
+echo "${KEY_PEM}" > ${OCI_DIR}/key.pem
 
 cat > ~/.oci/config <<EOF
 [DEFAULT]
@@ -12,5 +14,4 @@ fingerprint=${FINGERPRINT}
 tenancy=${TENANCY_OCID}
 region=ca-toronto-1
 key_file=${OCI_DIR}/key.pem
-
 EOF
