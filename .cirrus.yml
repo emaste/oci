@@ -10,15 +10,9 @@ compute_engine_instance:
 task:
   name: OCI
   environment:
-    USER_OCID: ENCRYPTED[9a7750ca486f5633308aada3eb82f747e95a49d8cf0f931891e09b4a570f95607d9930c8c53efb7e91293a5d6dbff4a8]
-    TENANCY_OCID: ENCRYPTED[7d2b99264390b5b442adc085ffb7197b706fc0d35442439f0da0d074a88cddb21d7dd7fe5e701dabf6c738faf56f5dad]
-    FINGERPRINT: ENCRYPTED[da283b7f3f7f7cec20ee4947b5f40e681e1a98668254f45dafd09ddd9a6f03ebc73ed09b887d24ad56ac23b26564584d]
-    KEY_PEM: ENCRYPTED[c517bf7927de489c496aa8f6ca34d19e88fe1064ab909651af569352c9dfdb4abece684d961101a30d90790e450b4f9a]
+    PAR_URL: https://example.com
   install_script:
-  - pkg install -y bash rust
-  oci_script:
-  - sh oci-config.sh
-  - fetch https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
-  - bash install.sh --accept-all-defaults
+  - pkg install -y curl
   script:
-  - oci os bucket list --compartment-id ${TENANCY_OCID}
+  - hostname > local-file
+  - curl -X PUT --data-binary '@local-file' ${PAR_URL}/remote-file
